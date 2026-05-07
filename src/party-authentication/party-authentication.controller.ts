@@ -27,7 +27,7 @@ const VALIDATION_BAD_REQUEST_SCHEMA = {
 };
 
 @ApiTags('Party Authentication')
-@Controller('party-authentication')
+@Controller('api/party-authentication')
 export class PartyAuthenticationController {
   constructor(
     private readonly partyAuthenticationService: PartyAuthenticationService,

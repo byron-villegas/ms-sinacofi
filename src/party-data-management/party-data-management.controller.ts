@@ -30,7 +30,7 @@ const BAD_REQUEST_SCHEMA = {
 };
 
 @ApiTags('Party Data Management')
-@Controller('party-data-management')
+@Controller('api/party-data-management')
 export class PartyDataManagementController {
   constructor(
     private readonly partyDataManagementService: PartyDataManagementService,

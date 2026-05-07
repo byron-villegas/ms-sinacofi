@@ -60,17 +60,15 @@ describe('main bootstrap', () => {
     });
     expect(mockApp.get).toHaveBeenCalledTimes(1);
     expect(mockApp.useLogger).toHaveBeenCalledWith(mockLogger);
-    expect(mockApp.setGlobalPrefix).toHaveBeenCalledWith('api');
+    expect(mockApp.setGlobalPrefix).not.toHaveBeenCalled();
     expect(mockApp.useGlobalPipes).toHaveBeenCalledTimes(1);
     expect(buildSwaggerConfigMock).toHaveBeenCalledTimes(1);
     expect(createDocumentMock).toHaveBeenCalledTimes(1);
     expect(setupMock).toHaveBeenCalledWith(
-      'swagger-ui',
+      'api/swagger-ui',
       mockApp,
       expect.any(Object),
-      expect.objectContaining({
-        useGlobalPrefix: true,
-      }),
+      expect.any(Object),
     );
     expect(mockApp.listen).toHaveBeenCalledWith('4321');
   });
