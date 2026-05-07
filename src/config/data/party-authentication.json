@@ -1,0 +1,14 @@
+{
+    "identityDocuments": [
+        {
+            "rut": "19889605-5",
+            "serialNumber": "A1234567",
+            "expirationDate": "2030-06-15"
+        },
+        {
+            "rut": "18887116-K",
+            "serialNumber": "987654321",
+            "expirationDate": "2028-03-22"
+        }
+    ]
+}
