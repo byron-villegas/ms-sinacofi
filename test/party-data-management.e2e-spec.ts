@@ -26,10 +26,10 @@ describe('Party Data Management API (e2e)', () => {
 
   it('/api/party-data-management/:rut (GET) should return 200 with party profile for existing rut', () => {
     return request(app.getHttpServer())
-      .get('/api/party-data-management/12345678-9')
+      .get('/api/party-data-management/18171484-0')
       .expect(200)
       .expect({
-        rut: '12345678-9',
+        rut: '18171484-0',
         names: 'Juan Carlos',
         firstLastName: 'Bodoque',
         secondLastName: 'Triviño',

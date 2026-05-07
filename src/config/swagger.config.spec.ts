@@ -43,7 +43,7 @@ describe('swagger config', () => {
       expect.arrayContaining([
         expect.objectContaining({
           name: 'Party Authentication',
-          description: 'Endpoints for party authentication validations',
+          description: 'Endpoints for party authentication validations and party data retrieval',
         }),
       ]),
     );

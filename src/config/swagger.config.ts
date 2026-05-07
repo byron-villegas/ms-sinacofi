@@ -18,6 +18,6 @@ export function buildSwaggerConfig() {
     )
     .addServer('http://localhost:3000', 'Local Development Server')
     .addServer('https://ms-sinacofi.vercel.app', 'Vercel Production')
-    .addTag('Party Authentication', 'Endpoints for party authentication validations')
+    .addTag('Party Authentication', 'Endpoints for party authentication validations and party data retrieval')
     .build();
 }
