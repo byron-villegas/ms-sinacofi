@@ -4,7 +4,7 @@ export function buildSwaggerConfig() {
   return new DocumentBuilder()
     .setTitle('MS Sinacofi API')
     .setDescription(
-      'Sinacofi Microservice API for party authentication and health checks',
+      'Sinacofi Microservice API for party authentication and party data management.',
     )
     .setVersion('1.0.0')
     .setContact(
@@ -19,5 +19,6 @@ export function buildSwaggerConfig() {
     .addServer('http://localhost:3000', 'Local Development Server')
     .addServer('https://ms-sinacofi.vercel.app', 'Vercel Production')
     .addTag('Party Authentication', 'Endpoints for party authentication validations and party data retrieval')
+    .addTag('Party Data Management', 'Endpoints for managing and retrieving party data')
     .build();
 }

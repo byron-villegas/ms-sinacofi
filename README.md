@@ -23,7 +23,10 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Sinacofi Microservice built with [NestJS](https://github.com/nestjs/nest) following the [BIAN](https://bian.org) standard. It exposes two service domains:
+
+- **Party Authentication** — validates a Chilean identity card (carnet) by RUT and serial number.
+- **Party Data Management** — retrieves personal profile data for a party by RUT.
 
 ## API documentation (Swagger)
 
@@ -37,55 +40,69 @@ Local example:
 
 Includes:
 
-- General project endpoints.
-- `party-screening` module endpoints.
-- OFAC and PEP request/response schemas.
+- `Party Authentication` endpoints with request/response schemas.
+- `Party Data Management` endpoints with request/response schemas.
 - DTO validation rules reflected in OpenAPI.
 
 ## Main endpoints
 
-- `POST /api/party-screening/ofac` - Screening OFAC.
-- `POST /api/party-screening/pep` - Screening PEP.
+- `POST /api/party-authentication/evaluate` — Evaluates whether a Chilean identity document is valid.
+- `GET /api/party-data-management/:rut` — Retrieves the profile of a party by RUT.
 
 ## Usage examples
 
-### POST /api/party-screening/ofac
+### POST /api/party-authentication/evaluate
 
 Request:
 
 ```json
 {
-  "rut": "11111111-1",
+  "rut": "19889605-5",
+  "serialNumber": "A1234567"
+}
+```
+
+Response 200:
+
+```json
+{
+  "isValid": true,
+  "expirationDate": "2030-06-15"
+}
+```
+
+Response 200 (not found):
+
+```json
+{
+  "isValid": false,
+  "expirationDate": "1900-01-01"
+}
+```
+
+### GET /api/party-data-management/:rut
+
+Response 200:
+
+```json
+{
+  "rut": "18171484-0",
   "names": "Juan Carlos",
   "firstLastName": "Bodoque",
   "secondLastName": "Triviño",
-  "birthDate": "1996-06-22"
+  "sex": "M",
+  "nationality": "CL",
+  "birthDate": "1990-06-22"
 }
 ```
 
-Response 200:
+Response 404:
 
 ```json
 {
-  "isOfac": false
-}
-```
-
-### POST /api/party-screening/pep
-
-Request:
-
-```json
-{
-  "rut": "11111111-1"
-}
-```
-
-Response 200:
-
-```json
-{
-  "isPep": false
+  "message": "Party with rut 11111111-1 not found",
+  "error": "Not Found",
+  "statusCode": 404
 }
 ```
 
@@ -93,10 +110,7 @@ Response 200:
 
 ```json
 {
-  "message": [
-    "rut must contain only digits, k, or hyphen",
-    "birthDate must be in the format yyyy-MM-dd"
-  ],
+  "message": "rut must contain only digits, k, or hyphen",
   "error": "Bad Request",
   "statusCode": 400
 }
@@ -136,40 +150,27 @@ $ npm run test:cov
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+When you're ready to deploy, the production server is available at:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+`https://ms-sinacofi.vercel.app`
+
+For local production build:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+$ npm run build
+$ npm run start:prod
 ```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
 ## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- [NestJS Documentation](https://docs.nestjs.com)
+- [BIAN Standard](https://bian.org)
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Byron Villegas Moya](https://github.com/byron-villegas)
+- Repository - [https://github.com/byron-villegas/ms-sinacofi](https://github.com/byron-villegas/ms-sinacofi)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+[MIT licensed](LICENSE).

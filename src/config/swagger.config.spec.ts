@@ -6,7 +6,7 @@ describe('swagger config', () => {
 
     expect(config.info.title).toBe('MS Sinacofi API');
     expect(config.info.description).toBe(
-      'Sinacofi Microservice API for party authentication and health checks',
+      'Sinacofi Microservice API for party authentication and party data management.',
     );
     expect(config.info.version).toBe('1.0.0');
     expect(config.info.contact).toEqual(
@@ -44,6 +44,10 @@ describe('swagger config', () => {
         expect.objectContaining({
           name: 'Party Authentication',
           description: 'Endpoints for party authentication validations and party data retrieval',
+        }),
+        expect.objectContaining({
+          name: 'Party Data Management',
+          description: 'Endpoints for managing and retrieving party data',
         }),
       ]),
     );

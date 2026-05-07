@@ -10,7 +10,9 @@
     "Pino",
     "Microservice",
     "REST",
-    "API"
+    "API",
+    "Authentication",
+    "Party Data Management"
   ],
   "homepage": "https://github.com/byron-villegas/ms-sinacofi",
   "bugs": {
